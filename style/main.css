@@ -1,0 +1,11 @@
+.login_panel {
+	width: 40%;
+	margin: auto;
+	text-align: center;
+	padding: 20px;
+}
+
+.header {
+	height: 45px;
+	background-color: #4285F4;
+}

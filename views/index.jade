@@ -1,0 +1,25 @@
+doctype html
+html
+  head
+    title Login
+    link(rel='stylesheet', type='text/css', href='style/bootstrap.css')
+    link(rel='stylesheet', type='text/css', href='style/main.css')
+  body
+    .container-fluid
+      .row.header.nav-bar
+        h1 BUG TRACKER
+
+      .container
+        .row.login_panel.panel.panel-default
+          .col-5-lg
+            h1.text-center Login
+            form
+              .form-group
+                input#email.form-control(type='email', placeholder='Email')
+              .form-group
+                input#password.form-control(type='password', placeholder='Password')
+              .checkbox
+                label
+                  input(type='checkbox', name='remember')
+                  |  Remember me
+              button.btn.btn-primary(type='submit') Submit

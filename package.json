@@ -1,0 +1,24 @@
+{
+  "name": "bug-tracker",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/experionnimish/Bug-Tracker.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/experionnimish/Bug-Tracker/issues"
+  },
+  "homepage": "https://github.com/experionnimish/Bug-Tracker#readme",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0",
+    "yarg": "^1.0.8"
+  }
+}

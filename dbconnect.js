@@ -1,51 +1,36 @@
-var express = require("express");
 var mysql = require('mysql');
-var bodyparser = require("body-parser");
-var app       =    express();
 
-app.use(bodyparser.urlencoded({
+var sequelize = new Sequelize('bug_tracker', 'root', 'ndm0150040', {
 
-	extended : "true"
+  host: 'localhost',
+  dialect: 'mysql'|'mariadb'|'sqlite'|'postgres'|'mssql',
 
-}));
+  pool: {
+    max: 5,
+    min: 0,
+    idle: 10000
+  }
 
-var pool      =    mysql.createPool({
-    connectionLimit : 100,
-    host     : 'localhost',
-    user     : 'root',
-    password : 'ndm0150040',
-    database : 'college',
-    debug    :  false
 });
 
-function handle_database(req,res) {
-    
-	var db = req.params.db;
-
-	var dbquery = "SELECT * FROM "+ db;
+function handle_database(dbquery) {
 
     pool.getConnection(function(err,connection){
         if (err) {
           res.json({"code" : 100, "status" : "Error in database connection!"});
           return;
-        }   
-        
+        }
+
         connection.query(dbquery,function(err,rows){
             connection.release();
             if(!err) {
                 res.json(rows);
-            }           
+            }
         });
 
-        connection.on('error', function(err) {      
+        connection.on('error', function(err) {
               res.json({"code" : 100, "status" : "Error in database connection!"});
-              return;     
+              return;
         });
   });
 }
-
-app.get("/:db",function(req,res){
-        handle_database(req,res);
-});
-	
-app.listen(3000);

@@ -18,16 +18,21 @@
   "homepage": "https://github.com/experionnimish/Bug-Tracker#readme",
   "dependencies": {
     "body-parser": "^1.15.2",
+    "cookie-parser": "^1.4.3",
     "ejs": "^2.5.5",
     "express": "^4.14.0",
     "express-logger": "0.0.3",
+    "express-session": "^1.14.2",
     "jade": "^1.11.0",
     "logger": "0.0.1",
     "morgan": "^1.7.0",
     "nib": "^1.1.2",
     "node-sass": "^4.1.1",
     "node-sass-middleware": "^0.10.1",
+    "passport": "^0.3.2",
+    "passport-local": "^1.0.0",
     "sass": "^0.5.0",
+    "sequelize": "^3.29.0",
     "stylus": "^0.54.5",
     "yarg": "^1.0.8"
   }

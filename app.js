@@ -6,6 +6,7 @@ var cookieParser = require('cookie-parser');
 var expressSession = require('express-session');
 var mysql = require('mysql');
 var Sequelize = require('sequelize');
+var flash = require('connect-flash');
 // var db = require('./dbconnect');
 
 var app = express();
@@ -47,7 +48,7 @@ var Users = sequelize.define('users', {
 //   });
 // });
 
-passport.use(new passportLocal.Strategy(function(username, password, done) {
+passport.use(new passportLocal.Strategy(function(req, username, password, done) {
   // if(username == password) {
   //   done(null, { id: username, name : username });
   // } else {
@@ -58,17 +59,17 @@ passport.use(new passportLocal.Strategy(function(username, password, done) {
         // attributes: ['user_id', 'password'],
       where: {
           user_id: username }
-    }).then(function(data) {
+    }).then(function(data,req) {
         if(data[0]) {
             if(data[0].dataValues.password == password) {
-                done(null, { id: data[0].dataValues.user_id, pass : data[0].dataValues.password });
+                return done(null, { id: data[0].dataValues.user_id, pass : data[0].dataValues.password });
             }
             else {
-                done(null, null);
+                return done(null, false, req.flash('loginMessage', 'No user found.'));
             }
         }
         else {
-            done(null, null);
+            return done(null, false, req.flash('loginMessage', 'Oops! Wrong password.'));
         }
     });
 
